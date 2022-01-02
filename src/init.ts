@@ -11,9 +11,13 @@ export async function setCommands (client: Cleux, guilds: Array<string> | string
   for (const dir of await fs.readdir('./dist/slash/')) {
     const files = (await fs.readdir(`./dist/slash/${dir}`)).filter(f => f.endsWith('.js'))
     for (const file of files) {
-      const { default: imported } = await import(`./slash/${dir}/${file}`)
-      if (imported.options) data.push({ name: imported.name, description: imported.description, options: imported.options })
-      else data.push({ name: imported.name, description: imported.description })
+      try {
+        const { default: imported } = await import(`./slash/${dir}/${file}`)
+        if (imported.options) data.push({ name: imported.name, description: imported.description, options: imported.options })
+        else data.push({ name: imported.name, description: imported.description })
+      } catch (error) {
+        console.log('Initialize > Fatal > Error with command')
+      }
     }
   }
 

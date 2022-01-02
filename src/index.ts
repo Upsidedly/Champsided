@@ -57,9 +57,13 @@ if ((await fs.readdir('./dist/slash/')).length !== 0) {
   for (const dir of await fs.readdir('./dist/slash/')) {
     const files = (await fs.readdir(`./dist/slash/${dir}`)).filter(file => file.endsWith('.js'))
     for (const file of files) {
-      const { default: imported } = await import(`./slash/${dir}/${file}`)
-      client.slash.set(imported.name, imported)
-      loaded += 1
+      try {
+        const { default: imported } = await import(`./slash/${dir}/${file}`)
+        client.slash.set(imported.name, imported)
+        loaded += 1
+      } catch (err) {
+        console.log('Command > Fatal > Error with file.')
+      }
     }
   }
   if (loaded === 0) {
