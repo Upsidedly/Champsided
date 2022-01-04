@@ -9,4 +9,10 @@ export default async (client: Cleux, inter: CommandInteraction) => {
     if (!slashCommand) return
     slashCommand.run(client, inter)
   }
+
+  if (inter.isButton()) {
+    const identifier: string = inter.customId.split('_')[0]
+    const command: any = client.buttons.get(identifier)
+    command(client, inter, inter.customId.split('_')[1])
+  }
 }

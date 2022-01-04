@@ -25,6 +25,8 @@ export default {
         else {
             embed.setDescription(`💀 **${percentage}%** 💀\nIt'll never work out.`);
         }
+        if (utility.anyIncludesAny([p1, p2], ['mr anon', 'mr. anon']) || utility.anyIncludesAny([p1, p2], ['friend']))
+            embed.setFooter('poor mr anon');
         inter.reply({ embeds: [embed] });
     },
     options: [

@@ -6,4 +6,9 @@ export default async (client, inter) => {
             return;
         slashCommand.run(client, inter);
     }
+    if (inter.isButton()) {
+        const identifier = inter.customId.split('_')[0];
+        const command = client.buttons.get(identifier);
+        command(client, inter, inter.customId.split('_')[1]);
+    }
 };
