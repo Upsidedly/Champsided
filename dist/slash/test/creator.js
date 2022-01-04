@@ -10,12 +10,12 @@ export default {
         const row = new discord.MessageActionRow().addComponents(new discord.MessageButton()
             .setURL('https://twitter.com/NotUpsided')
             .setEmoji('🐦')
-            .setStyle('LINK')
-            .setCustomId('tweet'), new discord.MessageButton()
+            .setLabel('Twitter')
+            .setStyle('LINK'), new discord.MessageButton()
             .setURL('https://www.youtube.com/channel/UCDXeDbeq-Z6ngCASDZ5Dmzg')
             .setStyle('LINK')
-            .setEmoji('🔴')
-            .setCustomId('tube'));
+            .setLabel('Youtube')
+            .setEmoji('🔴'));
         inter.reply({ embeds: [embed], components: [row] });
     }
 };

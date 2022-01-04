@@ -15,13 +15,13 @@ export default
       new discord.MessageButton()
         .setURL('https://twitter.com/NotUpsided')
         .setEmoji('🐦')
-        .setStyle('LINK')
-        .setCustomId('tweet'),
+        .setLabel('Twitter')
+        .setStyle('LINK'),
       new discord.MessageButton()
         .setURL('https://www.youtube.com/channel/UCDXeDbeq-Z6ngCASDZ5Dmzg')
         .setStyle('LINK')
+        .setLabel('Youtube')
         .setEmoji('🔴')
-        .setCustomId('tube')
     )
 
     inter.reply({ embeds: [embed], components: [row] })
