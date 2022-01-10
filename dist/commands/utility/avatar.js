@@ -2,6 +2,7 @@ import discord from 'discord.js';
 export default {
     name: 'av',
     aliases: [],
+    cooldown: 3,
     run: async (client, message, args, alias) => {
         const user = message.mentions.users.first() || client.users.cache.get(args[0]) || message.author;
         const embed = new discord.MessageEmbed()

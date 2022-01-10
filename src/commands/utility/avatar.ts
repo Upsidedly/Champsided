@@ -5,6 +5,7 @@ export default
 {
   name: 'av',
   aliases: [],
+  cooldown: 3,
   run: async (client: Cleux, message: Message, args: Array<string>, alias: string) => {
     const user = message.mentions.users.first() || client.users.cache.get(args[0]) || message.author
     const embed = new discord.MessageEmbed()

@@ -18,6 +18,7 @@ if ((await fs.readdir('./dist/commands/')).length !== 0) {
       const { default: imported } = await import(`./commands/${dir}/${file}`)
       client.commands.set(imported.name, imported)
       if (imported.btid) client.buttons.set(imported.btid, imported.button)
+      if (imported.cooldown) client.cooldowns.set(imported.name, imported.cooldown * 1000)
       loaded += 1
       for (const alias of imported.aliases) {
         client.aliases.set(alias, imported.name)
@@ -76,25 +77,5 @@ if ((await fs.readdir('./dist/slash/')).length !== 0) {
 } else {
   console.log('Slash > No directories found.')
 }
-
-// Buttons
-
-// if ((await fs.readdir('./dist/buttons/')).length !== 0) {
-//  let loaded = 0
-//  for (const dir of await fs.readdir('./dist/buttons/')) {
-//    for (const file of (await fs.readdir(`./dist/buttons/${dir}`)).filter(f => f.endsWith('.js'))) {
-//      const { default: button } = await import(`./buttons/${dir}/${file}`)
-//      client.buttons.set(button.data.name, button)
-//      loaded += 1
-//    }
-//  }
-//  if (loaded === 0) {
-//    console.log('Buttons > None found.')
-//  } else {
-//    console.log(`Buttons > ${loaded} loaded.`)
-//  }
-// } else {
-//  console.log('Buttons > No directories found.')
-// }
 
 client.login(config.token)

@@ -5,6 +5,7 @@ export class Cleux extends discord.Client {
     aliases = new discord.Collection();
     slash = new discord.Collection();
     buttons = new discord.Collection();
+    cooldowns = new discord.Collection();
     cmdCollect = {
         snipes: new discord.Collection()
     };
